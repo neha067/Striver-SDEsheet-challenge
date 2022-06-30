@@ -1,0 +1,13 @@
+https://leetcode.com/problems/binary-tree-preorder-traversal/submissions/
+
+class Solution {
+    List<Integer> li = new ArrayList<Integer>();
+    List<Integer> temp = new ArrayList<Integer>();
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if(root==null)return li;
+        li.add(root.val);
+        temp= preorderTraversal(root.left);
+        temp= preorderTraversal(root.right);
+        return li;
+    }
+}

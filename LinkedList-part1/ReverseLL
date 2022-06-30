@@ -1,0 +1,39 @@
+https://leetcode.com/problems/reverse-linked-list/
+
+//iterative approach
+class Solution {
+    public ListNode reverseList(ListNode head) {
+       ListNode prev = null; //head==current
+        while(head != null){
+            ListNode next = head.next;
+            head.next=prev;
+            prev=head;
+            head=next;
+        }
+        return prev;
+        
+    }
+    
+}
+
+//recursive approach
+
+class Solution {
+    public void reverseList(ListNode head) {
+       ListNode prev = null; //head==current
+       if(head==null){
+        prev=head;
+        return;
+       }
+       reverseList(head.next);
+        while(head != null){
+            ListNode next = head.next;
+            head.next=prev;
+            prev=head;
+            head=next;
+        }
+        return prev;
+        
+    }
+    
+}
