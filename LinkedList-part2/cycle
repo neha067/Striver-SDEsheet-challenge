@@ -1,0 +1,35 @@
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        //ultra naive modify the ll but faster than naive
+        // int spc = Integer.MIN_VALUE;
+        // while(head!=null){
+        //     if(head.val ==spc)return true;
+        //     else{
+        //     head.val = spc;
+        //     head= head.next;
+        //     }
+        // }
+        // return false;
+        // Set<ListNode> s = new HashSet<ListNode>();
+        // while(head!=null){
+        //     if(s.contains(head))return true;
+        //     else{
+        //         s.add(head);
+        //         head=head.next;
+        //     }
+        // }return false;
+        
+        //best soln reduces space comp.
+        ListNode temp = head;
+        ListNode slow=temp;
+        ListNode fast = temp;
+        if(fast==null)return false;
+        while(fast.next !=null && fast.next.next!=null){
+            fast= fast.next.next;
+            slow= slow.next;
+            if(fast==slow)return true;
+        }
+        return false;
+        
+    }
+}
