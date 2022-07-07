@@ -1,0 +1,51 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        //in scpace
+//         int temp = nums[0]; int size = 0;
+//         for(int i = 0; i<nums.length-1-size; i++){
+            
+//                 if(nums[i]==nums[i+1]){
+//                     movelast(nums,i+1);
+//                     size++;
+//                     //System.out.print(size+" ");
+//                     i--;
+//                 }
+//         }
+//         return nums.length-size;
+        //less time
+        
+//         HashSet<Integer> s = new HashSet<Integer>();
+//         for(int var : nums)s.add(var); int i=0;
+//         for(int var : s)
+//             nums[i++]= var;
+        
+//        while(i<nums.length)
+//             nums[i++]= Integer.MAX_VALUE;
+//         Arrays.sort(nums);
+//         return s.size();
+        
+        // optimal:  2 pointer approach
+        
+        int i=0,j=0; int temp;
+        while(j<nums.length){
+            if(nums[i]!=nums[j]){
+                i++;
+                temp= nums[i];
+                nums[i]=nums[j];
+                nums[j]=temp;
+                
+            }
+            j++;
+        }
+        return i+1;
+    }
+    public void movelast(int[] nums,int i){
+        int temp;
+        while(i < nums.length-1){
+            temp = nums[i];
+            nums[i]=nums[i+1];
+            nums[i+1]=temp;
+            i++;
+        }
+    }
+}
