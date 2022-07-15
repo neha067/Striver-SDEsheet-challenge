@@ -4,10 +4,26 @@ class Solution {
     List<Integer> li = new ArrayList<Integer>();
     List<Integer> temp = new ArrayList<Integer>();
     public List<Integer> preorderTraversal(TreeNode root) {
-        if(root==null)return li;
-        li.add(root.val);
-        temp= preorderTraversal(root.left);
-        temp= preorderTraversal(root.right);
+        // if(root==null)return li;
+        // li.add(root.val);
+        // temp= preorderTraversal(root.left);
+        // temp= preorderTraversal(root.right);
+        // return li;
+        // trivial -_-
+        if(root==null) return li;
+        Stack<TreeNode> st = new Stack<TreeNode>();
+
+        st.push(root);
+
+        while(!st.isEmpty()){
+            TreeNode node = st.pop();
+            if(node.right != null)
+            st.push(node.right);
+            if(node.left != null)
+            st.push(node.left);
+            li.add(node.val);
+
+        }
         return li;
     }
 }

@@ -6,10 +6,29 @@ class Solution {
     List<Integer> li = new ArrayList<Integer>();
     List<Integer> temp = new ArrayList<Integer>();
     public List<Integer> inorderTraversal(TreeNode root) {
-        if(root==null)return li;
-         temp = inorderTraversal(root.left);
-        li.add(root.val);
-        temp =  inorderTraversal(root.right);
-        return li;
+        // if(root==null)return li;
+        //  temp = inorderTraversal(root.left);
+        // li.add(root.val);
+        // temp =  inorderTraversal(root.right);
+        // return li;
+        
+        //iterative: 
+        
+        Stack<TreeNode> st = new Stack<TreeNode>();
+        TreeNode node = root;
+        //st.push(node);
+        
+        while(true){
+            if(node != null){
+                st.push(node);
+                node = node.left;
+            }else{
+                if(st.isEmpty())return li;
+                node = st.pop();
+                li.add(node.val);
+                node = node.right;
+            }
+        }
+        //return li;
     }
 }

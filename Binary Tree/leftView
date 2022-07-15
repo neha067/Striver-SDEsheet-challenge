@@ -1,0 +1,64 @@
+class Tree
+{
+    //ArrayList<Integer> ans = new ArrayList<Integer>();
+    //Function to return list containing elements of left view of binary tree.
+    ArrayList<Integer> leftView(Node root)
+    {
+      // Your code here
+      ArrayList<ArrayList<Node>> t = new ArrayList<ArrayList<Node>>();
+      Stack<ArrayList<Node>> st = new Stack<ArrayList<Node>>();
+       ArrayList<Integer> ans = new ArrayList<Integer>();
+     // if(root==null)return ans;
+     ArrayList<Node> t1 = new ArrayList<Node>(); t1.add(root);
+     ArrayList<Node> t2= new ArrayList<Node>(); t2.add(root);
+      t.add(t1);
+     st.push(t2);  
+     //Node rightt = null;
+      //ans.add(root.data);
+
+      //level order approach.....
+      while(!st.isEmpty()){
+          ArrayList<Node> cur = st.pop();
+          ArrayList<Node> temp = new ArrayList<Node>();
+          if(cur.size()==0)break;
+          for(Node itr : cur){
+              if(itr==null)break;
+              if(itr.left != null){
+                  temp.add(itr.left);
+              }
+              if(itr.right != null){
+                  temp.add(itr.right);
+              }
+          }
+          if(temp.size()==0)break;
+          st.push(temp);
+          
+          t.add(temp);
+             
+              
+             }
+              for(ArrayList<Node> arr : t){
+                  if(arr.get(0)!=null)
+                  ans.add(arr.get(0).data);
+              }
+      
+      
+    //   //crissssssp
+    //   helper(root,0);
+      
+      return ans;
+    }//recursive approach....
+    public void helper(Node root,int level){
+        if(root==null)return;
+        
+        if(level==ans.size())ans.add(root.data);
+        
+        helper(root.left,level+1);
+        helper(root.right,level+1);
+        
+        
+        
+        
+        
+    }
+}

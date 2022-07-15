@@ -1,0 +1,39 @@
+class Solution {
+    public int maxResult(int[] nums, int k) {
+        // int i=0,j=0,max=0,ans=nums[0],count;
+        // while(i < nums.length-1){
+        //     j=i+1;max=Integer.MIN_VALUE; count=0;
+        //     PriorityQueue<Integer> pq= new PriorityQueue<Integer>(
+        //         Collections.reverseOrder());
+        //     while(j< nums.length && count < k  ){
+        //         pq.add(nums[j]);
+        //         if(nums[j]==pq.peek()) {i=j;}
+        //         j++; count++;
+        //     }
+        //     System.out.println(pq.peek());
+        //     ans+= pq.peek();
+        //     //if()
+        // }
+        // return ans; guu
+        int size = nums.length;
+        int[] dp = new int[size];
+         PriorityQueue<Pair<Integer,Integer> > pq=
+                    new PriorityQueue<Pair<Integer,Integer>>(size,(a,b) -> b.getKey() - a.getKey());
+            //for dp[ind],ind
+        dp[size-1] = nums[size-1]; //coz cost for last stop is itself
+        
+        pq.add(new Pair(dp[size-1],size-1));
+        
+        for(int i=size-2; i>=0; i--){
+            while(pq.size()!=0 && pq.peek().getValue() > i+k) pq.remove();
+            
+            dp[i] = pq.peek().getKey() + nums[i];
+            
+            pq.add(new Pair(dp[i],i));
+        }
+        
+        return dp[0];
+        
+        
+    }
+}
